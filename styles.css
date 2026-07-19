@@ -54,7 +54,7 @@ a {
   justify-content: space-between;
   gap: 24px;
   padding: 18px clamp(18px, 5vw, 72px);
-  color:#008080;
+  color:#027c7c;
   background: linear-gradient(180deg, rgba(8, 13, 19, 0.78), rgba(8, 13, 19, 0));
 }
 

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | Enigma 5.0</title>
+  <meta name="description" content="Register your team for Enigma 5.0, the flagship hackathon of SIES CSI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── Page-level overrides ───────────────────── */
+    body {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .reg-page {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: clamp(100px, 14vh, 140px) clamp(18px, 5vw, 72px) clamp(56px, 8vw, 80px);
+    }
+
+    /* ── Split layout ───────────────────────────── */
+    .reg-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: clamp(32px, 6vw, 80px);
+      align-items: start;
+      width: 100%;
+      max-width: 1080px;
+    }
+
+    /* ── Left side: info ────────────────────────── */
+    .reg-info {
+      position: sticky;
+      top: 120px;
+    }
+
+    .reg-info .eyebrow {
+      color: var(--coral);
+    }
+
+    .reg-info h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      color: var(--lime);
+      text-shadow: 2px 2px 0 rgba(24,183,179,0.3);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .reg-info p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 360px;
+    }
+
+    .reg-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .reg-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.04);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .reg-pill span {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--lime);
+      flex-shrink: 0;
+    }
+
+    /* ── Form card ──────────────────────────────── */
+    .reg-form-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: clamp(28px, 5vw, 48px);
+      backdrop-filter: blur(8px);
+    }
+
+    .form-section-label {
+      display: block;
+      margin: 0 0 18px;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .form-divider {
+      margin: 28px 0;
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      color: var(--white);
+      font-family: var(--font-cool);
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 200ms ease, background 200ms ease, box-shadow 200ms ease;
+      appearance: none;
+    }
+
+    .form-group input::placeholder {
+      color: rgba(255,255,255,0.22);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--teal);
+      background: rgba(24,183,179,0.06);
+      box-shadow: 0 0 0 3px rgba(24,183,179,0.12);
+    }
+
+    .form-group select option {
+      background: #15212b;
+      color: var(--white);
+    }
+
+    .members-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form-submit {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .form-note {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.5;
+    }
+
+    .button.primary.reg-btn {
+      min-width: 160px;
+      background: var(--lime);
+      color: var(--ink);
+      font-size: 0.88rem;
+      box-shadow: 0 0 0 0 rgba(213,239,103,0);
+      transition: transform 180ms ease, box-shadow 260ms ease;
+    }
+
+    .button.primary.reg-btn:hover {
+      box-shadow:
+        0 0 0 4px rgba(213,239,103,0.2),
+        0 12px 32px rgba(213,239,103,0.28);
+    }
+
+    /* ── Back link ──────────────────────────────── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: color 200ms ease;
+    }
+
+    .back-link:hover { color: var(--lime); }
+
+    .back-link::before {
+      content: "←";
+      font-size: 1rem;
+    }
+
+    /* ── Responsive ─────────────────────────────── */
+    @media (max-width: 720px) {
+      .reg-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .reg-info {
+        position: static;
+      }
+
+      .members-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Enigma 5.0 home">
+      <span class="brand-mark">E5</span>
+      <span>Enigma 5.0</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="index.html#tracks">Problems</a>
+      <a href="index.html#timeline">Timeline</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="reg-page">
+    <div class="reg-wrap">
+
+      <!-- Left: context -->
+      <div class="reg-info">
+        <p class="eyebrow">Join the hackathon</p>
+        <h1>Register<br>Your Team</h1>
+        <p>
+          Form a team of four undergraduate students, pick a problem statement, and compete for the
+          ₹25,000 prize pool at Enigma 5.0 — SIES CSI's flagship hackathon.
+        </p>
+        <div class="reg-pills">
+          <div class="reg-pill"><span></span>4 Members per team</div>
+          <div class="reg-pill"><span></span>4 Problem Statements</div>
+          <div class="reg-pill"><span></span>₹25,000 Prize Pool</div>
+          <div class="reg-pill"><span></span>Undergrads Only</div>
+        </div>
+        <a class="back-link" href="index.html">Back to home</a>
+      </div>
+
+      <!-- Right: form -->
+      <div class="reg-form-card">
+        <form id="registration-form" onsubmit="handleSubmit(event)" novalidate>
+
+          <!-- Team details -->
+          <span class="form-section-label">Team Details</span>
+
+          <div class="form-group">
+            <label for="team-name">Team Name</label>
+            <input id="team-name" type="text" placeholder="e.g. ByteForce" autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label for="college">College / Institution</label>
+            <input id="college" type="text" placeholder="e.g. SIES Graduate School of Technology">
+          </div>
+
+          <div class="form-group">
+            <label for="problem-statement">Problem Statement</label>
+            <select id="problem-statement">
+              <option value="" disabled selected>Select a problem statement</option>
+              <option value="ps1">Problem Statement 01 — To be announced</option>
+              <option value="ps2">Problem Statement 02 — To be announced</option>
+              <option value="ps3">Problem Statement 03 — To be announced</option>
+              <option value="ps4">Problem Statement 04 — To be announced</option>
+            </select>
+          </div>
+
+          <hr class="form-divider">
+
+          <!-- Members -->
+          <span class="form-section-label">Team Members</span>
+
+          <div class="members-grid">
+            <div class="form-group">
+              <label for="m1-name">Member 1 (Lead)</label>
+              <input id="m1-name" type="text" placeholder="Full name">
+            </div>
+            <div class="form-group">
+              <label for="m1-email">Email</label>
+              <input id="m1-email" type="email" placeholder="email@example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="m2-name">Member 2</label>
+              <input id="m2-name" type="text" placeholder="Full name">
+            </div>
+            <div class="form-group">
+              <label for="m2-email">Email</label>
+              <input id="m2-email" type="email" placeholder="email@example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="m3-name">Member 3</label>
+              <input id="m3-name" type="text" placeholder="Full name">
+            </div>
+            <div class="form-group">
+              <label for="m3-email">Email</label>
+              <input id="m3-email" type="email" placeholder="email@example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="m4-name">Member 4</label>
+              <input id="m4-name" type="text" placeholder="Full name">
+            </div>
+            <div class="form-group">
+              <label for="m4-email">Email</label>
+              <input id="m4-email" type="email" placeholder="email@example.com">
+            </div>
+          </div>
+
+          <div class="form-submit">
+            <p class="form-note">
+              Registration confirmation<br>will be sent to the team lead's email.
+            </p>
+            <button type="submit" class="button primary reg-btn">Submit Team</button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <span>Enigma 5.0</span>
+    <span>Flagship Hackathon of SIES CSI</span>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = document.querySelector('.reg-btn');
+      btn.textContent = 'Submitted ✓';
+      btn.style.background = 'var(--teal)';
+      btn.style.pointerEvents = 'none';
+    }
+  </script>
+
+</body>
+</html>
