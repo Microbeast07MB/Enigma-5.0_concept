@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Enigma 5.0 | SIES CSI Hackathon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,7 +16,7 @@
       <span>Enigma 5.0</span>
     </a>
     <nav class="nav-links" aria-label="Primary navigation">
-      <a href="#tracks">Tracks</a>
+      <a href="#tracks">Problems</a>
       <a href="#timeline">Timeline</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -23,7 +26,7 @@
     <section class="hero" id="home">
       <div class="hero-content">
         <p class="eyebrow">SIES CSI flagship hackathon</p>
-        <h1 class="decode-text" data-decode-text="Enigma 5.0">Enigma 5.0<span class="decode-cursor" aria-hidden="true"></span></h1>
+        <h1 class="decode-text" data-decode-text="𝔼𝕟𝕚𝕘𝕞𝕒 𝟝.𝟘">𝔼𝕟𝕚𝕘𝕞𝕒 𝟝.𝟘<span class="decode-cursor" aria-hidden="true"></span></h1>
         <p class="hero-copy">
           A high-energy hackathon for undergraduate builders working in teams of 4 to solve real problems across FinTech and HealthTech.
         </p>
@@ -43,8 +46,8 @@
           <strong>4 Members</strong>
         </div>
         <div>
-          <span>Tracks</span>
-          <strong>2 Domains</strong>
+          <span>Challenges</span>
+          <strong>4 Statements</strong>
         </div>
       </div>
     </section>
@@ -64,19 +67,29 @@
  
     <section class="section" id="tracks">
       <div class="section-heading reveal">
-        <p class="eyebrow">Hackathon Tracks</p>
-        <h2>Choose a problem space and build something useful.</h2>
+        <p class="eyebrow">Challenge Briefs</p>
+        <h2>Four problem statements. One chance to build a useful solution.</h2>
       </div>
-      <div class="track-grid stagger-grid">
-        <article class="track-card fintech reveal-scale">
+      <div class="problem-grid stagger-grid">
+        <article class="problem-card reveal-scale">
           <span class="track-number">01</span>
-          <h3>FinTech</h3>
-          <p>Payments, personal finance, financial inclusion, risk tools, and smarter digital money experiences.</p>
+          <h3>Problem Statement 1</h3>
+          <p>Challenge details will be announced by the SIES CSI team.</p>
         </article>
-        <article class="track-card healthtech reveal-scale">
+        <article class="problem-card reveal-scale">
           <span class="track-number">02</span>
-          <h3>HealthTech</h3>
-          <p>Preventive care, health access, diagnostics support, wellness platforms, and better patient journeys.</p>
+          <h3>Problem Statement 2</h3>
+          <p>Challenge details will be announced by the SIES CSI team.</p>
+        </article>
+        <article class="problem-card reveal-scale">
+          <span class="track-number">03</span>
+          <h3>Problem Statement 3</h3>
+          <p>Challenge details will be announced by the SIES CSI team.</p>
+        </article>
+        <article class="problem-card reveal-scale">
+          <span class="track-number">04</span>
+          <h3>Problem Statement 4</h3>
+          <p>Challenge details will be announced by the SIES CSI team.</p>
         </article>
       </div>
     </section>
@@ -94,8 +107,8 @@
         </li>
         <li class="reveal">
           <span>Step 2</span>
-          <strong>Pick a Track</strong>
-          <p>Select FinTech or HealthTech based on the problem your team wants to solve.</p>
+          <strong>Choose a Problem Statement</strong>
+          <p>Review the four challenge briefs and choose the problem your team wants to solve.</p>
         </li>
         <li class="reveal">
           <span>Step 3</span>
@@ -137,6 +150,8 @@
       if (!heading) return;
  
       const finalText = heading.getAttribute("data-decode-text") || heading.textContent.trim();
+      // Array.from keeps double-struck Unicode characters intact while decoding.
+      const characters = Array.from(finalText);
       const cursor = heading.querySelector(".decode-cursor");
       const glyphs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&*+";
  
@@ -153,9 +168,9 @@
  
       const tick = () => {
         let output = "";
-        for (let i = 0; i < finalText.length; i += 1) {
-          if (i < revealed || finalText[i] === " ") {
-            output += finalText[i];
+        for (let i = 0; i < characters.length; i += 1) {
+          if (i < revealed || characters[i] === " ") {
+            output += characters[i];
           } else {
             output += glyphs[Math.floor(Math.random() * glyphs.length)];
           }
@@ -164,11 +179,11 @@
         if (cursor) heading.appendChild(cursor);
  
         frame += 1;
-        if (frame % framesPerReveal === 0 && revealed < finalText.length) {
+        if (frame % framesPerReveal === 0 && revealed < characters.length) {
           revealed += 1;
         }
  
-        if (revealed >= finalText.length) {
+        if (revealed >= characters.length) {
           heading.textContent = finalText;
           if (cursor) heading.appendChild(cursor);
           heading.classList.remove("is-decoding");
