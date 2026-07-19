@@ -33,6 +33,7 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -54,10 +55,10 @@ a {
   justify-content: space-between;
   gap: 24px;
   padding: 18px clamp(18px, 5vw, 72px);
-  color:#027c7c;
+  color: #ffffff;
   background: linear-gradient(180deg, rgba(8, 13, 19, 0.78), rgba(8, 13, 19, 0));
   transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
-              background 260ms ease;
+    background 260ms ease;
 }
 
 /* Scrolled state: solid dark background */
@@ -96,7 +97,8 @@ a {
 .nav-links {
   gap: clamp(14px, 3vw, 32px);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.03em;
 }
 
 .nav-links a {
@@ -160,6 +162,7 @@ a {
   0% {
     background-position: 0 -220%;
   }
+
   100% {
     background-position: 0 220%;
   }
@@ -230,10 +233,12 @@ h1 {
 }
 
 @keyframes cursor-blink {
+
   0%,
   49% {
     opacity: 1;
   }
+
   50%,
   100% {
     opacity: 0;
@@ -286,6 +291,7 @@ h1 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .hero .eyebrow,
   .hero-copy,
   .hero-actions {
@@ -315,12 +321,10 @@ h1 {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    115deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.42) 45%,
-    transparent 60%
-  );
+  background: linear-gradient(115deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.42) 45%,
+      transparent 60%);
   transform: translateX(-130%);
   transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: none;
@@ -474,27 +478,28 @@ h1 {
 }
 
 /* Cards and timeline steps enter in a short sequence after their grid appears. */
-.stagger-grid > :is(.reveal, .reveal-left, .reveal-scale):nth-child(1) {
+.stagger-grid> :is(.reveal, .reveal-left, .reveal-scale):nth-child(1) {
   transition-delay: 0s;
 }
 
-.stagger-grid > :is(.reveal, .reveal-left, .reveal-scale):nth-child(2) {
+.stagger-grid> :is(.reveal, .reveal-left, .reveal-scale):nth-child(2) {
   transition-delay: 0.1s;
 }
 
-.stagger-grid > :is(.reveal, .reveal-left, .reveal-scale):nth-child(3) {
+.stagger-grid> :is(.reveal, .reveal-left, .reveal-scale):nth-child(3) {
   transition-delay: 0.2s;
 }
 
-.stagger-grid > :is(.reveal, .reveal-left, .reveal-scale):nth-child(4) {
+.stagger-grid> :is(.reveal, .reveal-left, .reveal-scale):nth-child(4) {
   transition-delay: 0.3s;
 }
 
-.stagger-grid > :is(.reveal, .reveal-left, .reveal-scale):nth-child(5) {
+.stagger-grid> :is(.reveal, .reveal-left, .reveal-scale):nth-child(5) {
   transition-delay: 0.4s;
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .reveal,
   .reveal-left,
   .reveal-scale {
@@ -665,9 +670,17 @@ h1 {
   transition: opacity 260ms ease, visibility 260ms ease, background 260ms ease;
 }
 
-.problem-grid[data-active-card="2"] .problem-detail-panel { background: #fff0e5; }
-.problem-grid[data-active-card="3"] .problem-detail-panel { background: #eff6cf; }
-.problem-grid[data-active-card="4"] .problem-detail-panel { background: #eee9f8; }
+.problem-grid[data-active-card="2"] .problem-detail-panel {
+  background: #fff0e5;
+}
+
+.problem-grid[data-active-card="3"] .problem-detail-panel {
+  background: #eff6cf;
+}
+
+.problem-grid[data-active-card="4"] .problem-detail-panel {
+  background: #eee9f8;
+}
 
 .problem-grid.has-active-card .problem-detail-panel {
   opacity: 1;
@@ -764,10 +777,19 @@ h1 {
   padding: 0 8px;
 }
 
-.rig-top { align-items: end; padding-bottom: 18px; }
-.rig-bottom { align-items: start; padding-top: 18px; }
+.rig-top {
+  align-items: end;
+  padding-bottom: 18px;
+}
 
-.rig-slot { min-width: 0; }
+.rig-bottom {
+  align-items: start;
+  padding-top: 18px;
+}
+
+.rig-slot {
+  min-width: 0;
+}
 
 .rig-card {
   padding: 14px 16px;
@@ -820,13 +842,11 @@ h1 {
   left: 8px;
   right: 8px;
   height: 3px;
-  background: repeating-linear-gradient(
-    90deg,
-    var(--lime) 0,
-    var(--lime) 9px,
-    transparent 9px,
-    transparent 19px
-  );
+  background: repeating-linear-gradient(90deg,
+      var(--lime) 0,
+      var(--lime) 9px,
+      transparent 9px,
+      transparent 19px);
   opacity: 0.55;
   border-radius: 2px;
 }
@@ -980,6 +1000,7 @@ h1 {
 
 
 @media (max-width: 820px) {
+
   .site-header,
   .site-footer,
   .contact-band {
@@ -1082,7 +1103,7 @@ h1 {
   /* Cards keep border on mobile */
   .rig-card {
     border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 14px 16px;
   }
 
@@ -1173,5 +1194,138 @@ h1 {
   /* Contact band */
   .contact-band h2 {
     font-size: 1.6rem;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   Mobile zigzag road timeline
+   Hidden on desktop, shown only at ≤820px
+   ══════════════════════════════════════════════ */
+
+.mobile-timeline {
+  display: none;
+  /* hidden on desktop */
+}
+
+@media (max-width: 820px) {
+
+  /* Hide the desktop rig, show the zigzag */
+  .rig-wrap {
+    display: none !important;
+  }
+
+  .mobile-timeline {
+    display: block;
+    margin-top: 40px;
+  }
+
+  /* ── Step rows ───────────────────────────── */
+  .mt-step {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* Node dot */
+  .mt-node {
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--ink);
+    border: 2px solid var(--lime);
+    color: var(--lime);
+    display: grid;
+    place-items: center;
+    font-size: 0.68rem;
+    font-weight: 800;
+    font-family: var(--font-cool-bold);
+    box-shadow:
+      0 0 0 5px rgba(213, 239, 103, 0.12),
+      0 0 18px rgba(213, 239, 103, 0.25);
+    position: relative;
+    z-index: 2;
+    transition: box-shadow 260ms ease, transform 260ms ease;
+  }
+
+  .mt-node:hover {
+    box-shadow:
+      0 0 0 8px rgba(213, 239, 103, 0.2),
+      0 0 28px rgba(213, 239, 103, 0.45);
+    transform: scale(1.1);
+  }
+
+  /* Horizontal dashed connector between node and card */
+  .mt-connector {
+    flex-shrink: 0;
+    height: 3px;
+    width: 20px;
+    background: repeating-linear-gradient(90deg,
+        var(--lime) 0, var(--lime) 5px,
+        transparent 5px, transparent 11px);
+    opacity: 0.55;
+  }
+
+  /* Card */
+  .mt-card {
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(6px);
+    transition: background 240ms ease, border-color 240ms ease;
+  }
+
+  .mt-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(213, 239, 103, 0.2);
+  }
+
+  .mt-card strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.88rem;
+    font-family: var(--font-cool-bold);
+    color: var(--white);
+  }
+
+  .mt-card p {
+    margin: 0;
+    font-size: 0.74rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.55;
+  }
+
+  /* ── Curve segments between steps ───────── */
+  /* Right-to-left curve: road sweeps from right side to left */
+  .mt-curve {
+    height: 48px;
+    position: relative;
+    margin: 0 23px;
+    /* aligns with node centers */
+  }
+
+  .mt-curve::before {
+    content: "";
+    position: absolute;
+    width: 60%;
+    height: 100%;
+    border: 3px dashed rgba(213, 239, 103, 0.45);
+    border-top: none;
+  }
+
+  /* r2l: arc goes from right node down-and-left to left node */
+  .mt-curve-r2l::before {
+    right: 0;
+    border-left: none;
+    border-radius: 0 0 50px 0;
+  }
+
+  /* l2r: arc goes from left node down-and-right to right node */
+  .mt-curve-l2r::before {
+    left: 0;
+    border-right: none;
+    border-radius: 0 0 0 50px;
   }
 }
