@@ -8,9 +8,8 @@ Design and develop a landing page for Enigma 5.0, the flagship hackathon of SIES
 
 ## 2. Smooth Scrolling and Buttons
 
-> add it
 
-Add smooth scrolling with a fixed-header offset, pressed button states, and a glow effect for the primary button.
+>Add smooth scrolling with a fixed-header offset, pressed button states, and a glow effect for the primary button.
 
 ## 3. Scroll-Reveal Animation
 

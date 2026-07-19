@@ -71,26 +71,55 @@
         <h2>Four problem statements. One chance to build a useful solution.</h2>
       </div>
       <div class="problem-grid stagger-grid">
-        <article class="problem-card reveal-scale">
+        <article class="problem-card reveal-scale" tabindex="0">
           <span class="track-number">01</span>
           <h3>Problem Statement 1</h3>
-          <p>Challenge details will be announced by the SIES CSI team.</p>
+          <p>Official challenge details will be announced by the SIES CSI team.</p>
+          <div class="problem-details">
+            <p>The complete challenge brief, expected outcomes, and supporting resources will be published here.</p>
+            <div class="problem-meta">
+              <span>Scope <strong>To be announced</strong></span>
+              <span>Evaluation <strong>To be announced</strong></span>
+            </div>
+          </div>
         </article>
-        <article class="problem-card reveal-scale">
+        <article class="problem-card reveal-scale" tabindex="0">
           <span class="track-number">02</span>
           <h3>Problem Statement 2</h3>
-          <p>Challenge details will be announced by the SIES CSI team.</p>
+          <p>Official challenge details will be announced by the SIES CSI team.</p>
+          <div class="problem-details">
+            <p>The complete challenge brief, expected outcomes, and supporting resources will be published here.</p>
+            <div class="problem-meta">
+              <span>Scope <strong>To be announced</strong></span>
+              <span>Evaluation <strong>To be announced</strong></span>
+            </div>
+          </div>
         </article>
-        <article class="problem-card reveal-scale">
+        <article class="problem-card reveal-scale" tabindex="0">
           <span class="track-number">03</span>
           <h3>Problem Statement 3</h3>
-          <p>Challenge details will be announced by the SIES CSI team.</p>
+          <p>Official challenge details will be announced by the SIES CSI team.</p>
+          <div class="problem-details">
+            <p>The complete challenge brief, expected outcomes, and supporting resources will be published here.</p>
+            <div class="problem-meta">
+              <span>Scope <strong>To be announced</strong></span>
+              <span>Evaluation <strong>To be announced</strong></span>
+            </div>
+          </div>
         </article>
-        <article class="problem-card reveal-scale">
+        <article class="problem-card reveal-scale" tabindex="0">
           <span class="track-number">04</span>
           <h3>Problem Statement 4</h3>
-          <p>Challenge details will be announced by the SIES CSI team.</p>
+          <p>Official challenge details will be announced by the SIES CSI team.</p>
+          <div class="problem-details">
+            <p>The complete challenge brief, expected outcomes, and supporting resources will be published here.</p>
+            <div class="problem-meta">
+              <span>Scope <strong>To be announced</strong></span>
+              <span>Evaluation <strong>To be announced</strong></span>
+            </div>
+          </div>
         </article>
+        <div class="problem-detail-panel" aria-live="polite"></div>
       </div>
     </section>
  
@@ -128,7 +157,30 @@
         <p class="eyebrow">Questions?</p>
         <h2>Contact the SIES CSI team.</h2>
       </div>
-      <a class="button secondary light reveal" href="mailto:siescsi@example.com?subject=Enigma%205.0%20Query">Contact Team</a>
+      <div class="contact-menu reveal">
+        <a class="button secondary light" href="mailto:siescsi@example.com?subject=Enigma%205.0%20Query">Contact Team</a>
+        <aside class="contact-popover" aria-label="Enigma 5.0 contact details">
+          <p class="contact-popover-title">Contact Coordinators</p>
+          <div class="contact-details">
+            <div class="contact-detail">
+              <span>Coordinator 1</span>
+              <strong>Phone: TBA</strong>
+            </div>
+            <div class="contact-detail">
+              <span>Coordinator 2</span>
+              <strong>Phone: TBA</strong>
+            </div>
+            <div class="contact-detail">
+              <span>Coordinator 3</span>
+              <strong>Phone: TBA</strong>
+            </div>
+            <a class="contact-detail contact-email" href="mailto:siescsi@example.com?subject=Enigma%205.0%20Query">
+              <span>Email</span>
+              <strong>siescsi@example.com</strong>
+            </a>
+          </div>
+        </aside>
+      </div>
     </section>
   </main>
  
@@ -225,7 +277,55 @@
  
       revealEls.forEach((el) => observer.observe(el));
     })();
- 
+
+    (function problemStatementDetails() {
+      document.querySelectorAll(".problem-grid").forEach((grid) => {
+        const cards = grid.querySelectorAll(".problem-card");
+        const detailPanel = grid.querySelector(".problem-detail-panel");
+
+        const setActiveCard = (activeCard) => {
+          grid.classList.add("has-active-card");
+          grid.dataset.activeCard = Array.from(cards).indexOf(activeCard) + 1;
+
+          if (detailPanel) {
+            const content = document.createElement("div");
+            content.className = "problem-detail-content";
+            content.append(
+              activeCard.querySelector(".track-number").cloneNode(true),
+              activeCard.querySelector("h3").cloneNode(true)
+            );
+
+            const details = activeCard.querySelector(".problem-details").cloneNode(true);
+            details.className = "panel-details";
+            content.append(details);
+            detailPanel.replaceChildren(content);
+          }
+
+          cards.forEach((card) => {
+            card.classList.toggle("is-active", card === activeCard);
+            card.classList.toggle("is-muted", card !== activeCard);
+          });
+        };
+
+        const clearActiveCard = () => {
+          grid.classList.remove("has-active-card");
+          delete grid.dataset.activeCard;
+          detailPanel?.replaceChildren();
+          cards.forEach((card) => card.classList.remove("is-active", "is-muted"));
+        };
+
+        cards.forEach((card) => {
+          card.addEventListener("pointerenter", () => setActiveCard(card));
+          card.addEventListener("focus", () => setActiveCard(card));
+        });
+
+        grid.addEventListener("pointerleave", clearActiveCard);
+        grid.addEventListener("focusout", (event) => {
+          if (!grid.contains(event.relatedTarget)) clearActiveCard();
+        });
+      });
+    })();
+
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener("click", (event) => {
         const targetId = anchor.getAttribute("href");
