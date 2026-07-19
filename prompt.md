@@ -42,3 +42,39 @@ Create a vanilla JavaScript and CSS scroll-reveal system using Intersection Obse
 > change according to the above statements
 
 > ok make it 4 problem statements edit step 2 and track accoding and have a light to medium colour palette for the cards
+
+## 8. Problem Card Hover Background
+
+> so there are problem statement cards and when we hover on them they shows the full problem statement u just need to add the colour of the background same as the card we are hovering on
+
+The `.problem-detail-panel` overlay now inherits the hovered card's background color using `data-active-card` attribute selectors — teal tint for card 1, peach for card 2, lime for card 3, lavender for card 4.
+
+## 9. Timeline Redesign — Laptop & Monitor Rig
+
+> make it look cool the Event Flow / A clear path from idea to demo. roadmap it too boring make it something like a laptop connected to a screen and the wire is the roadmap
+
+Replaced the flat 4-column grid with an illustrated cable rig:
+- CSS/SVG **laptop** on the left (shows code lines + blinking cursor)
+- CSS/SVG **monitor** on the right (shows a trophy icon)
+- A **dashed lime wire** connects them with 4 glowing numbered node dots
+- Steps 2 & 4 float **above** the wire; steps 1 & 3 hang **below** — zigzag reading flow
+- Cards use glass-morphism styling with `backdrop-filter: blur`
+- Collapses to a vertical stack on mobile (≤820px)
+
+## 10. Header Text Colour
+
+> the area where E5 / Enigma 5.0 / Problems / Timeline / Contact is written make the text colour #ED9121
+
+Changed `color` on `.site-header` from `var(--white)` to `#ED9121` (amber). User later updated it manually to `#027c7c` (teal).
+
+## 11. Registration Page
+
+> now create a directing register page i dont want a proper one just so such that it matching the theme don't necessary to be working
+
+Created `register.html` — a themed, non-functional registration page:
+- Same fixed header + footer as `index.html`
+- Dark `--ink` background
+- Two-column split: left info panel (event facts + pills), right glass-card form
+- Form fields: Team Name, College, Problem Statement selector, 4×(Name + Email) member grid
+- Submit button shows "Submitted ✓" feedback (JS only, no backend)
+- Both "Register" buttons in `index.html` now route to `register.html`
