@@ -78,3 +78,20 @@ Created `register.html` — a themed, non-functional registration page:
 - Form fields: Team Name, College, Problem Statement selector, 4×(Name + Email) member grid
 - Submit button shows "Submitted ✓" feedback (JS only, no backend)
 - Both "Register" buttons in `index.html` now route to `register.html`
+
+## 12. Bolder Nav Text & Header Color Fix
+
+> make text in this area little bolder so that it could be seen easily
+> and when scrolled down in phone it hides upwards and scrolling up brings it back
+
+Two changes made:
+
+**Nav text legibility:**
+- `color` on `.site-header` changed from `#027c7c` (dark teal, low contrast) → `#ffffff` (white)
+- `.nav-links` `font-weight` bumped from `600` → `700`
+- Added `letter-spacing: 0.03em` to `.nav-links` for better readability
+
+**Hide-on-scroll (mobile):**
+- Already fully implemented from a previous session — no new code needed
+- `.site-header.is-hidden { transform: translateY(-110%); }` handles the slide-up
+- JS `hideOnScroll()` adds/removes `.is-hidden` based on scroll direction with an 8px threshold to prevent jitter
