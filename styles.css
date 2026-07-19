@@ -644,13 +644,17 @@ h1 {
   padding: clamp(24px, 4vw, 38px);
   border: 1px solid rgba(16, 24, 32, 0.12);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.9);
+  background: #e7f5f4;
   box-shadow: 0 12px 30px rgba(12, 25, 38, 0.1);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 260ms ease, visibility 260ms ease;
+  transition: opacity 260ms ease, visibility 260ms ease, background 260ms ease;
 }
+
+.problem-grid[data-active-card="2"] .problem-detail-panel { background: #fff0e5; }
+.problem-grid[data-active-card="3"] .problem-detail-panel { background: #eff6cf; }
+.problem-grid[data-active-card="4"] .problem-detail-panel { background: #eee9f8; }
 
 .problem-grid.has-active-card .problem-detail-panel {
   opacity: 1;
