@@ -18,12 +18,12 @@
       <a href="#contact">Contact</a>
     </nav>
   </header>
-
+ 
   <main>
     <section class="hero" id="home">
       <div class="hero-content">
         <p class="eyebrow">SIES CSI flagship hackathon</p>
-        <h1>Enigma 5.0</h1>
+        <h1 class="decode-text" data-decode-text="Enigma 5.0">Enigma 5.0<span class="decode-cursor" aria-hidden="true"></span></h1>
         <p class="hero-copy">
           A high-energy hackathon for undergraduate builders working in teams of 4 to solve real problems across FinTech and HealthTech.
         </p>
@@ -48,98 +48,182 @@
         </div>
       </div>
     </section>
-
+ 
     <section class="section intro" id="register">
-      <div class="section-heading">
+      <div class="section-heading reveal">
         <p class="eyebrow">Build with purpose</p>
         <h2>For undergraduate teams ready to prototype bold ideas.</h2>
       </div>
-      <div class="intro-copy">
+      <div class="intro-copy reveal" style="--reveal-delay: 120ms;">
         <p>
-          Enigma 5.0 brings student teams together to research, build, test, and present solutions under real hackathon pressure.
+          Enigma 5.0 brings student teams of four together to research, build, test, and present solutions under real hackathon pressure — one prompt, one prototype, one pitch at a time.
         </p>
         <a class="button primary dark" href="mailto:siescsi@example.com?subject=Enigma%205.0%20Registration">Register</a>
       </div>
     </section>
-
+ 
     <section class="section" id="tracks">
-      <div class="section-heading">
+      <div class="section-heading reveal">
         <p class="eyebrow">Hackathon Tracks</p>
         <h2>Choose a problem space and build something useful.</h2>
       </div>
       <div class="track-grid">
-        <article class="track-card fintech">
+        <article class="track-card fintech reveal" style="--reveal-delay: 80ms;">
           <span class="track-number">01</span>
           <h3>FinTech</h3>
           <p>Payments, personal finance, financial inclusion, risk tools, and smarter digital money experiences.</p>
         </article>
-        <article class="track-card healthtech">
+        <article class="track-card healthtech reveal" style="--reveal-delay: 200ms;">
           <span class="track-number">02</span>
           <h3>HealthTech</h3>
           <p>Preventive care, health access, diagnostics support, wellness platforms, and better patient journeys.</p>
         </article>
       </div>
     </section>
-
+ 
     <section class="timeline-section" id="timeline">
-      <div class="section-heading">
+      <div class="section-heading reveal">
         <p class="eyebrow">Event Flow</p>
         <h2>A clear path from idea to demo.</h2>
       </div>
       <ol class="timeline">
-        <li>
+        <li class="reveal" style="--reveal-delay: 0ms;">
           <span>Step 1</span>
           <strong>Register Your Team</strong>
           <p>Form a team of 4 undergraduate students and submit your details.</p>
         </li>
-        <li>
+        <li class="reveal" style="--reveal-delay: 100ms;">
           <span>Step 2</span>
           <strong>Pick a Track</strong>
           <p>Select FinTech or HealthTech based on the problem your team wants to solve.</p>
         </li>
-        <li>
+        <li class="reveal" style="--reveal-delay: 200ms;">
           <span>Step 3</span>
           <strong>Build and Mentor</strong>
           <p>Prototype your solution, refine the user flow, and prepare your final pitch.</p>
         </li>
-        <li>
+        <li class="reveal" style="--reveal-delay: 300ms;">
           <span>Step 4</span>
           <strong>Demo and Win</strong>
           <p>Present to judges and compete for the &#8377;25,000 prize pool.</p>
         </li>
       </ol>
     </section>
-
+ 
     <section class="contact-band" id="contact">
-      <div>
+      <div class="reveal">
         <p class="eyebrow">Questions?</p>
         <h2>Contact the SIES CSI team.</h2>
       </div>
-      <a class="button secondary light" href="mailto:siescsi@example.com?subject=Enigma%205.0%20Query">Contact Team</a>
+      <a class="button secondary light reveal" style="--reveal-delay: 120ms;" href="mailto:siescsi@example.com?subject=Enigma%205.0%20Query">Contact Team</a>
     </section>
   </main>
-
+ 
   <footer class="site-footer">
     <span>Enigma 5.0</span>
     <span>Flagship Hackathon of SIES CSI</span>
   </footer>
-
+ 
   <script>
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+ 
+    /*
+      Decode effect: the hero headline resolves out of scrambled cipher
+      characters, one letter at a time, echoing the "Enigma" theme from the
+      brief. Skipped entirely if the visitor prefers reduced motion.
+    */
+    (function decodeHeadline() {
+      const heading = document.querySelector(".decode-text");
+      if (!heading) return;
+ 
+      const finalText = heading.getAttribute("data-decode-text") || heading.textContent.trim();
+      const cursor = heading.querySelector(".decode-cursor");
+      const glyphs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&*+";
+ 
+      if (prefersReducedMotion) {
+        heading.textContent = finalText;
+        if (cursor) heading.appendChild(cursor);
+        return;
+      }
+ 
+      let frame = 0;
+      const framesPerReveal = 3;
+      let revealed = 0;
+      heading.classList.add("is-decoding");
+ 
+      const tick = () => {
+        let output = "";
+        for (let i = 0; i < finalText.length; i += 1) {
+          if (i < revealed || finalText[i] === " ") {
+            output += finalText[i];
+          } else {
+            output += glyphs[Math.floor(Math.random() * glyphs.length)];
+          }
+        }
+        heading.textContent = output;
+        if (cursor) heading.appendChild(cursor);
+ 
+        frame += 1;
+        if (frame % framesPerReveal === 0 && revealed < finalText.length) {
+          revealed += 1;
+        }
+ 
+        if (revealed >= finalText.length) {
+          heading.textContent = finalText;
+          if (cursor) heading.appendChild(cursor);
+          heading.classList.remove("is-decoding");
+          return;
+        }
+ 
+        requestAnimationFrame(tick);
+      };
+ 
+      requestAnimationFrame(tick);
+    })();
+ 
+    /*
+      Scroll reveal: fades and lifts elements marked `.reveal` into place the
+      first time they cross into the viewport, then stops observing them.
+    */
+    (function scrollReveal() {
+      const revealEls = document.querySelectorAll(".reveal");
+      if (!revealEls.length) return;
+ 
+      if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+        revealEls.forEach((el) => el.classList.add("is-visible"));
+        return;
+      }
+ 
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2, rootMargin: "0px 0px -40px 0px" }
+      );
+ 
+      revealEls.forEach((el) => observer.observe(el));
+    })();
+ 
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener("click", (event) => {
         const targetId = anchor.getAttribute("href");
-
+ 
         if (targetId === "#") return;
-
+ 
         const targetSection = document.querySelector(targetId);
         const header = document.querySelector(".site-header");
-
+ 
         if (!targetSection || !header) return;
-
+ 
         event.preventDefault();
-
+ 
         const headerHeight = header.offsetHeight;
-
+ 
         /*
           getBoundingClientRect().top gives the target's position relative to
           the current viewport. Adding window.scrollY converts it to the target's
@@ -148,7 +232,7 @@
         */
         const targetPosition =
           targetSection.getBoundingClientRect().top + window.scrollY - headerHeight;
-
+ 
         window.scrollTo({
           top: targetPosition,
           behavior: "smooth"
