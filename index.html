@@ -123,5 +123,38 @@
     <span>Enigma 5.0</span>
     <span>Flagship Hackathon of SIES CSI</span>
   </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", (event) => {
+        const targetId = anchor.getAttribute("href");
+
+        if (targetId === "#") return;
+
+        const targetSection = document.querySelector(targetId);
+        const header = document.querySelector(".site-header");
+
+        if (!targetSection || !header) return;
+
+        event.preventDefault();
+
+        const headerHeight = header.offsetHeight;
+
+        /*
+          getBoundingClientRect().top gives the target's position relative to
+          the current viewport. Adding window.scrollY converts it to the target's
+          absolute page position. Subtracting headerHeight leaves room for the
+          fixed header so it does not cover the section heading.
+        */
+        const targetPosition =
+          targetSection.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth"
+        });
+      });
+    });
+  </script>
 </body>
 </html>
