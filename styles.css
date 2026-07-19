@@ -412,20 +412,58 @@ h1 {
   padding: clamp(56px, 8vw, 104px) clamp(18px, 5vw, 72px);
 }
 
-.reveal {
+.reveal,
+.reveal-left,
+.reveal-scale {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: var(--reveal-delay, 0ms);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, transform;
 }
 
-.reveal.is-visible {
+.reveal {
+  transform: translateY(40px);
+}
+
+.reveal-left {
+  transform: translateX(-40px);
+}
+
+.reveal-scale {
+  transform: scale(0.95);
+}
+
+.reveal.active,
+.reveal-left.active,
+.reveal-scale.active {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(0) scale(1);
+}
+
+/* Cards and timeline steps enter in a short sequence after their grid appears. */
+.stagger-grid > :is(.reveal, .reveal-left, .reveal-scale):nth-child(1) {
+  transition-delay: 0s;
+}
+
+.stagger-grid > :is(.reveal, .reveal-left, .reveal-scale):nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.stagger-grid > :is(.reveal, .reveal-left, .reveal-scale):nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.stagger-grid > :is(.reveal, .reveal-left, .reveal-scale):nth-child(4) {
+  transition-delay: 0.3s;
+}
+
+.stagger-grid > :is(.reveal, .reveal-left, .reveal-scale):nth-child(5) {
+  transition-delay: 0.4s;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  .reveal,
+  .reveal-left,
+  .reveal-scale {
     opacity: 1;
     transform: none;
     transition: none;
