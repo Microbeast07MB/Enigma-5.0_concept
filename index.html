@@ -128,28 +128,99 @@
         <p class="eyebrow">Event Flow</p>
         <h2>A clear path from idea to demo.</h2>
       </div>
-      <ol class="timeline stagger-grid">
-        <li class="reveal">
-          <span>Step 1</span>
-          <strong>Register Your Team</strong>
-          <p>Form a team of 4 undergraduate students and submit your details.</p>
-        </li>
-        <li class="reveal">
-          <span>Step 2</span>
-          <strong>Choose a Problem Statement</strong>
-          <p>Review the four challenge briefs and choose the problem your team wants to solve.</p>
-        </li>
-        <li class="reveal">
-          <span>Step 3</span>
-          <strong>Build and Mentor</strong>
-          <p>Prototype your solution, refine the user flow, and prepare your final pitch.</p>
-        </li>
-        <li class="reveal">
-          <span>Step 4</span>
-          <strong>Demo and Win</strong>
-          <p>Present to judges and compete for the &#8377;25,000 prize pool.</p>
-        </li>
-      </ol>
+
+      <div class="rig-wrap">
+
+        <!-- Left device: Laptop -->
+        <figure class="rig-device rig-laptop" aria-hidden="true">
+          <svg class="rig-svg" viewBox="0 0 120 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="4" width="104" height="66" rx="5" stroke="currentColor" stroke-width="2.5"/>
+            <rect x="14" y="10" width="92" height="54" rx="2" fill="rgba(213,239,103,0.07)" stroke="rgba(213,239,103,0.28)" stroke-width="1"/>
+            <rect x="20" y="20" width="52" height="2.5" rx="1" fill="rgba(213,239,103,0.6)"/>
+            <rect x="20" y="27" width="72" height="2.5" rx="1" fill="rgba(255,255,255,0.18)"/>
+            <rect x="20" y="34" width="38" height="2.5" rx="1" fill="rgba(255,107,74,0.5)"/>
+            <rect x="20" y="41" width="62" height="2.5" rx="1" fill="rgba(255,255,255,0.14)"/>
+            <rect x="20" y="48" width="34" height="2.5" rx="1" fill="rgba(24,183,179,0.6)"/>
+            <rect x="56" y="48" width="3" height="2.5" rx="0.5" fill="rgba(213,239,103,0.95)" class="rig-cursor"/>
+            <path d="M4 70 L116 70 L112 82 L8 82 Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+            <rect x="47" y="73" width="26" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5" opacity="0.45"/>
+          </svg>
+          <figcaption>Your Team</figcaption>
+        </figure>
+
+        <!-- Wire track with step nodes -->
+        <div class="rig-track">
+          <!-- Cards above wire: steps 2 & 4 -->
+          <div class="rig-row rig-top">
+            <div class="rig-slot"></div>
+            <div class="rig-slot">
+              <div class="rig-card reveal">
+                <span class="rig-num">02</span>
+                <strong>Choose a Problem</strong>
+                <p>Pick one of four challenge briefs your team wants to solve.</p>
+              </div>
+            </div>
+            <div class="rig-slot"></div>
+            <div class="rig-slot">
+              <div class="rig-card reveal">
+                <span class="rig-num">04</span>
+                <strong>Demo &amp; Win</strong>
+                <p>Present to judges and compete for the &#8377;25,000 prize pool.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- The cable with 4 nodes -->
+          <div class="rig-cable">
+            <div class="cable-line"></div>
+            <div class="cable-nodes">
+              <div class="cable-node" data-step="1"></div>
+              <div class="cable-node" data-step="2"></div>
+              <div class="cable-node" data-step="3"></div>
+              <div class="cable-node" data-step="4"></div>
+            </div>
+          </div>
+
+          <!-- Cards below wire: steps 1 & 3 -->
+          <div class="rig-row rig-bottom">
+            <div class="rig-slot">
+              <div class="rig-card reveal">
+                <span class="rig-num">01</span>
+                <strong>Register Your Team</strong>
+                <p>Form a team of 4 undergrads and submit your details.</p>
+              </div>
+            </div>
+            <div class="rig-slot"></div>
+            <div class="rig-slot">
+              <div class="rig-card reveal">
+                <span class="rig-num">03</span>
+                <strong>Build &amp; Mentor</strong>
+                <p>Prototype your solution, refine the flow, and prep your pitch.</p>
+              </div>
+            </div>
+            <div class="rig-slot"></div>
+          </div>
+        </div>
+
+        <!-- Right device: Monitor -->
+        <figure class="rig-device rig-monitor" aria-hidden="true">
+          <svg class="rig-svg" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="4" width="110" height="72" rx="5" stroke="currentColor" stroke-width="2.5"/>
+            <rect x="11" y="10" width="98" height="60" rx="2" fill="rgba(213,239,103,0.07)" stroke="rgba(213,239,103,0.28)" stroke-width="1"/>
+            <!-- Trophy icon area -->
+            <path d="M50 28 L50 44 L70 44 L70 28 Z" stroke="rgba(213,239,103,0.5)" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M50 28 Q50 20 60 20 Q70 20 70 28" stroke="rgba(213,239,103,0.5)" stroke-width="1.5"/>
+            <line x1="60" y1="44" x2="60" y2="52" stroke="rgba(213,239,103,0.4)" stroke-width="1.5"/>
+            <line x1="50" y1="52" x2="70" y2="52" stroke="rgba(213,239,103,0.4)" stroke-width="1.5"/>
+            <rect x="30" y="56" width="60" height="2" rx="1" fill="rgba(255,255,255,0.12)"/>
+            <!-- Stand -->
+            <line x1="60" y1="76" x2="60" y2="90" stroke="currentColor" stroke-width="2.5"/>
+            <line x1="38" y1="90" x2="82" y2="90" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <figcaption>Demo Day</figcaption>
+        </figure>
+
+      </div>
     </section>
  
     <section class="contact-band" id="contact">
